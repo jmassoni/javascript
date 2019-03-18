@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../../../favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+  <title>Stickease</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  
+  <!-- Aligns buttons in footer of each card to the right-->
+  <style>
+    .card-footer {
+      text-align: right;
+    }
+  </style>
+
+
+
+  <!-- Customized Bootstrap Album layout -->
+  <link href="album.css" rel="stylesheet">
+</head>
+
+<body>
+  
+  <!-- Navbar is just used for logo and design purposes -->
+  <header>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+            <img src="https://image.ibb.co/fkTdkq/sticky-notes-icon-22-jpg.png" width="25" height="25" class="img-responsive"/>
+            <strong>Stickease</strong>
+          </a>
+      </div>
+    </div>
+  </header>
+
+  <main role="main">
+    <!-- Jumbotron heading incorporates motto, mission statement, sticky notes picture, login forms and buttons -->
+    <section class="jumbotron text-center">
+      <div class="row">
+        <div class="col-md-8">
+
+
+          <h1 class="jumbotron-heading">Get your ideas down. With ease.</h1>
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+              <img src="http://icons.iconarchive.com/icons/wwalczyszyn/iwindows/512/Sticky-Notes-icon.png" width="250" height="250" class="img-responsive">
+            </div>
+            <div class="col-md-5">
+              <p></p>
+              <p></p>
+              <p></p>
+              <p class="lead text-muted">
+                <br /> Remember cork boards? Yeah, neither do we. On Stickease, you can post simple notes in colored rectangles. No nonsense. And definitely no cork.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Login Components -->
+        <div class="col-md-4">
+
+          <h3> Login </h3>
+
+          <input type="text" class="form-control" id="signInEmail" placeholder="E-mail">
+
+          <input type="password" class="form-control" id="signInPassword" placeholder="Password">
+
+          <button class="btn btn-outline-secondary btn-block mt-4" id="signInButton">
+                        Sign In
+                    </button>
+
+          <button class="btn btn-outline-secondary btn-block mt-2" id="createAccountButton">
+                        Create New Account
+                    </button>
+
+          <button class="btn btn-outline-secondary btn-block mt-2" id="signOutButton">
+                        Sign Out
+                    </button>
+
+          <div id="signInInformation" class="mt-4">
+            <!-- Sign in information will appear here -->
+          </div>
+
+        </div>
+        <!-- /col-md-3 -->
+      </div>
+
+
+
+    </section>
+
+    <!-- Bottom section of body includes note input form, card targeting system and cards (stickies) themselves -->
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+
+
+        <div class="row">
+
+          <!-- A form is used for the note input, a toggleable button group for the number selection and a dropdown for the color -->
+
+          <div class=" col-md-7">
+
+            <input type="note " class="form-control " id="noteInput" aria-describedby="noteHelp " placeholder="Enter note here... ">
+
+          </div>
+          <div class="col-md-3">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-secondary active" id="one">
+                  <input type="radio" name="options" autocomplete="off" checked> 1
+                </label>
+              <label class="btn btn-secondary" id="two">
+                  <input type="radio" name="options" autocomplete="off" > 2
+                </label>
+              <label class="btn btn-secondary" id="three">
+                  <input type="radio" name="options" autocomplete="off" > 3
+                </label>
+              <label class="btn btn-secondary" id="four">
+                  <input type="radio" name="options" autocomplete="off" > 4
+                </label>
+              <label class="btn btn-secondary" id="five">
+                  <input type="radio" name="options" autocomplete="off" > 5
+                </label>
+              <label class="btn btn-secondary" id="six">
+                  <input type="radio" name="options" autocomplete="off" > 6
+                </label>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+
+
+            <div class="btn-group dropright">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Color
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" id="blue">Blue</a>
+                <a class="dropdown-item" id="yellow">Yellow</a>
+                <a class="dropdown-item" id="green">Green</a>
+                <a class="dropdown-item" id="red">Red</a>
+              </div>
+            </div>
+
+
+
+
+          </div>
+
+
+        </div>
+
+
+
+        </br>
+        
+        <!-- This button takes the text from the note input form and sends it to Firebase -->
+
+        <div class="row">
+          <div class=" col-md-1">
+          </div>
+          <div class=" col-md-10">
+            <button type="button" class="btn btn-secondary btn-lg btn-block" id="postButton">Submit Sticky</button>
+          </div>
+          <div class=" col-md-1">
+          </div>
+        </div>
+
+
+        </br>
+        </br>
+        </br>
+
+        <!-- Each set of different colored buttons has it's own editable form to act as a label for the color -->
+        <!-- We used card columns to get masonry style auto-adjustment of card positioning, relative to one another -->
+        <!-- Each individual card is labeled for js funtionality -->
+        <!-- The card-footer includes a toggleable button group for priority -->
+        <!-- It also includes a 'Complete' button that clears that individual card -->
+        <input class="form-control form-control-lg" type="text" placeholder="Blue Sticky Label">
+
+        </br>
+
+        <div class="card-columns">
+
+          <div class="card text-white bg-primary mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes1blue">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear1blue">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-primary mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes2blue">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+              <button type="button" class="btn btn-light btn-sm" id="clear2blue">Complete</button>
+            </div>
+
+          </div>
+          <div class="card text-white bg-primary mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes3blue">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear3blue">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-primary mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes4blue">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear4blue">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-primary mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes5blue">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear5blue">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-primary mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes6blue">
+
+            </div>
+
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear6blue">Complete</button>
+
+            </div>
+          </div>
+
+        </div>
+
+        <input class="form-control form-control-lg" type="text" placeholder="Yellow Sticky Label">
+
+        </br>
+
+        <div class="card-columns">
+          <div class="card text-white bg-warning mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes1yellow">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear1yellow">Complete</button>
+
+            </div>
+
+
+          </div>
+          <div class="card text-white bg-warning mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes2yellow">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear2yellow">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-warning mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes3yellow">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear3yellow">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-warning mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes4yellow">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear4yellow">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-warning mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes5yellow">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear5yellow">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-warning mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes6yellow">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear6yellow">Complete</button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <input class="form-control form-control-lg" type="text" placeholder="Green Sticky Label">
+
+        </br>
+
+        <div class="card-columns">
+          <div class="card text-white bg-success mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes1green">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear1green">Complete</button>
+
+            </div>
+
+
+          </div>
+          <div class="card text-white bg-success mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes2green">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear2green">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-success mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes3green">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear3green">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-success mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes4green">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear4green">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-success mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes5green">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear5green">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-success mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes6green">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear6green">Complete</button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <input class="form-control form-control-lg" type="text" placeholder="Red Sticky Label">
+
+        </br>
+
+        <div class="card-columns">
+          <div class="card text-white bg-danger mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes1red">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear1red">Complete</button>
+
+            </div>
+
+
+          </div>
+          <div class="card text-white bg-danger mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes2red">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear2red">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-danger mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes3red">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear3red">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-danger mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes4red">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear4red">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-danger mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes5red">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear5red">Complete</button>
+
+            </div>
+
+          </div>
+          <div class="card text-white bg-danger mb-3" style="max-width: 37rem;">
+            <div class="card-header"></div>
+            <div class="card-body" id="notes6red">
+
+            </div>
+            <div class="card-footer">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light btn-sm active">
+                  <input type="radio" name="options" autocomplete="off" checked> !
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!
+                </label>
+                <label class="btn btn-light btn-sm">
+                  <input type="radio" name="options" autocomplete="off"> !!!
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-light btn-sm" id="clear6red">Complete</button>
+
+            </div>
+
+          </div>
+        </div>
+
+
+
+  </main>
+
+  <!-- The footer includes a statement on the site authors and a functional 'Back to Top' link -->
+  <footer class="text-muted ">
+    </br>
+    <div class="container ">
+      <p class="float-right ">
+        <a href="# ">Back to top</a>
+      </p>
+      <p>Stickease was created by Maximiliano Castrillon and Joey Massoni. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- The Firebase code is initialized here -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyC4Z25jGap9ofXT3hyxGII32JyZq4vcxM4",
+      authDomain: "stickease-e73b2.firebaseapp.com",
+      databaseURL: "https://stickease-e73b2.firebaseio.com",
+      projectId: "stickease-e73b2",
+      storageBucket: "stickease-e73b2.appspot.com",
+      messagingSenderId: "283848707127"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous "></script>
+  <script>
+    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js "><\/script>');
+  </script>
+
+
+
+  <script>
+  
+    // Default values for number and color are set 
+    var number = 1;
+    var color = "blue";
+
+    // onClick checks for button clicks on the button group at the top of the body
+    // If any the buttons are clicked the card number is targeted appropriately
+    // Because of the way card-columns organizes card vertically within the div
+    // we associated number selection for 2-5 with their horizontally ordered counterpart
+    document.getElementById("one").onclick = function() {
+      number = 1;
+
+    };
+    document.getElementById("two").onclick = function() {
+      number = 3;
+
+    };
+    document.getElementById("three").onclick = function() {
+      number = 5;
+
+    };
+    document.getElementById("four").onclick = function() {
+      number = 2;
+
+    };
+    document.getElementById("five").onclick = function() {
+      number = 4;
+
+    };
+    document.getElementById("six").onclick = function() {
+      number = 6;
+
+    };
+
+    // onClick checks for button clicks within the dropdown color picker
+    // If any the buttons are clicked the color is targeted appropriately
+    document.getElementById("blue").onclick = function() {
+      color = "blue";
+
+    };
+    document.getElementById("yellow").onclick = function() {
+      color = "yellow";
+
+    };
+    document.getElementById("green").onclick = function() {
+      color = "green";
+
+    };
+    document.getElementById("red").onclick = function() {
+      color = "red";
+
+    };
+
+    
+    // Each complete button has it's own function that replaces the text in the
+    // card with an empty string
+    document.getElementById("clear1blue").onclick = function() {
+
+      document.getElementById("notes1blue").innerHTML = '';
+
+    };
+    document.getElementById("clear2blue").onclick = function() {
+
+      document.getElementById("notes2blue").innerHTML = '';
+
+    };
+    document.getElementById("clear3blue").onclick = function() {
+
+      document.getElementById("notes3blue").innerHTML = '';
+
+    };
+    document.getElementById("clear4blue").onclick = function() {
+
+      document.getElementById("notes4blue").innerHTML = '';
+
+    };
+    document.getElementById("clear5blue").onclick = function() {
+
+      document.getElementById("notes5blue").innerHTML = '';
+
+    };
+    document.getElementById("clear6blue").onclick = function() {
+
+      document.getElementById("notes6blue").innerHTML = '';
+
+    };
+    document.getElementById("clear1yellow").onclick = function() {
+
+      document.getElementById("notes1yellow").innerHTML = '';
+
+    };
+    document.getElementById("clear2yellow").onclick = function() {
+
+      document.getElementById("notes2yellow").innerHTML = '';
+
+    };
+    document.getElementById("clear3yellow").onclick = function() {
+
+      document.getElementById("notes3yellow").innerHTML = '';
+
+    };
+    document.getElementById("clear4yellow").onclick = function() {
+
+      document.getElementById("notes4yellow").innerHTML = '';
+
+    };
+    document.getElementById("clear5yellow").onclick = function() {
+
+      document.getElementById("notes5yellow").innerHTML = '';
+
+    };
+    document.getElementById("clear6yellow").onclick = function() {
+
+      document.getElementById("notes6yellow").innerHTML = '';
+
+    };
+    document.getElementById("clear1green").onclick = function() {
+
+      document.getElementById("notes1green").innerHTML = '';
+
+    };
+    document.getElementById("clear2green").onclick = function() {
+
+      document.getElementById("notes2green").innerHTML = '';
+
+    };
+    document.getElementById("clear3green").onclick = function() {
+
+      document.getElementById("notes3green").innerHTML = '';
+
+    };
+    document.getElementById("clear4green").onclick = function() {
+
+      document.getElementById("notes4green").innerHTML = '';
+
+    };
+    document.getElementById("clear5green").onclick = function() {
+
+      document.getElementById("notes5green").innerHTML = '';
+
+    };
+    document.getElementById("clear6green").onclick = function() {
+
+      document.getElementById("notes6green").innerHTML = '';
+
+    };
+    document.getElementById("clear1red").onclick = function() {
+
+      document.getElementById("notes1red").innerHTML = '';
+
+    };
+    document.getElementById("clear2red").onclick = function() {
+
+      document.getElementById("notes2red").innerHTML = '';
+
+    };
+    document.getElementById("clear3red").onclick = function() {
+
+      document.getElementById("notes3red").innerHTML = '';
+
+    };
+    document.getElementById("clear4red").onclick = function() {
+
+      document.getElementById("notes4red").innerHTML = '';
+
+    };
+    document.getElementById("clear5red").onclick = function() {
+
+      document.getElementById("notes5red").innerHTML = '';
+
+    };
+    document.getElementById("clear6red").onclick = function() {
+
+      document.getElementById("notes6red").innerHTML = '';
+
+    };
+
+
+    // This is a modified version of the database entry creator we used in our lab
+    // It checks if the user is logged in, essentially only allowing users with accounts to use the site's functionality
+    document.getElementById("postButton").onclick = function() {
+
+      // If the user isn't logged in, don't do anything
+      var user = firebase.auth().currentUser;
+      console.log(user);
+      if (!user) {
+        return;
+      }
+
+      var newPost = document.getElementById('noteInput').value;
+
+
+      // Get a unique key from Firebase
+      var newPostKey = firebase.database().ref().child('notes').push().key;
+
+      // Add the new post to the database
+      populatePosts();
+      firebase.database().ref('notes/' + newPostKey).set({
+        text: newPost,
+        key: newPostKey,
+        user: user.email,
+      });
+    };
+
+
+    // A counter is created here to make sure the board is cleared on refresh
+    var count = 0;
+    // This is a slightly modified version of the populatePosts function we used in our lab
+    // The notes variable is initialized with the function limitToLast(1) to make
+    // sure only the latest entry into the database is placed into each card.
+    function populatePosts() {
+
+
+      // Populate the posts div
+      var notes = firebase.database().ref('notes/').limitToLast(1).once('value').then(function(snapshot) {
+
+        // Remove anything in the posts div                
+        document.getElementById("notes" + number + color).innerHTML = '';
+
+        // snapshot.val() gets the root of the tree of objects
+        var notes = snapshot.val();
+
+        // posts is a JS object
+        // Iterate over its keys to access each post
+        // Make a new <p> DOM node and append it to the posts <div>
+        for (key in notes) {
+
+
+          var newElement = document.createElement("p");
+          newElement.innerHTML = notes[key].text;
+          document.getElementById("notes" + number + color).appendChild(newElement);
+        }
+
+
+        // This if statement, along with the counter above, help make sure all cards are cleared on refresh
+        if (count < 2) {
+          window.onload = document.getElementById("notes1blue").innerHTML = '';
+          count = count + 1;
+        }
+
+      });
+
+    }
+
+
+    // This new post checking function was pulled from our lab 
+    firebase.database().ref('notes/').on('value', function(snapshot) {
+
+      // If the user isn't logged in, don't do anything
+      var user = firebase.auth().currentUser;
+      if (!user) {
+        return;
+      }
+
+      // Fill the posts div with the current set of posts
+      populatePosts();
+    });
+
+    // The sign in functionality was pulled directly from our lab and worked
+    // well for authenticating usage of the site, creating new users and logging in
+
+    /*** Sign-In Button ***/
+    //
+    // Gets username and password from boxes
+    // Uses SESSION persistence, so sign in is only valid for the current tab
+    document.getElementById("signInButton").onclick = function() {
+
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(function() {
+          var email = document.getElementById("signInEmail").value;
+          var password = document.getElementById("signInPassword").value;
+          return firebase.auth().signInWithEmailAndPassword(email, password);
+        })
+        .catch(function(error) {
+          document.getElementById('signInInformation').innerHTML = '<p>' + error.message + '</p>';
+        });
+    };
+
+
+    /*** Sign-In Button ***/
+    //
+    // Gets username and password from boxes
+    // Uses SESSION persistence, so sign in is only valid for the current tab
+    document.getElementById("createAccountButton").onclick = function() {
+
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(function() {
+          var email = document.getElementById("signInEmail").value;
+          var password = document.getElementById("signInPassword").value;
+          return firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+            populatePosts();
+          });
+        })
+        .catch(function(error) {
+          document.getElementById('signInInformation').innerHTML = '<p>' + error.message + '</p>';
+        });
+    };
+
+
+    /*** Sign Out Button ***/
+    document.getElementById('signOutButton').onclick = function() {
+      firebase.auth().signOut();
+    };
+
+
+    /*** Sign In / Out Behavior ***/
+    //
+    // Triggers when user sign-in status changes
+    firebase.auth().onAuthStateChanged(function(user) {
+
+      // User is signed in
+      if (user) {
+        populatePosts();
+        document.getElementById('signInInformation').innerHTML = '<p>Signed in as <b>' + user.email + '</b>.</p>';
+      }
+
+      // User is signed out
+      else {
+        // Clear the posts div
+        document.getElementById('posts').innerHTML = '';
+        document.getElementById('signInEmail').value = '';
+        document.getElementById('signInPassword').value = '';
+        document.getElementById('signInInformation').innerHTML = '<p>Signed out.</p>';
+      }
+    });
+  </script>
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "cms450-f18-project-2-jmassoni",
+  "version": "1.0.0",
+  "description": "## Due Tuesday, October 23, IN CLASS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rollinscs/cms450-f18-project-2-jmassoni.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rollinscs/cms450-f18-project-2-jmassoni/issues"
+  },
+  "homepage": "https://github.com/rollinscs/cms450-f18-project-2-jmassoni#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {}
+}
